@@ -1,0 +1,32 @@
+<!-- partials or include you could name this file
+we can have code in separate html temolate
+various inputs of html template it has
+
+
+
+
+
+                                               -->
+
+                                               
+<!--
+msgs have tag success warning
+	{{message.tags}}
+#mesage added as context list
+#chek first if msgs added loop through it
+
+
+to make it look better we can use bootstrap alerts (doc/componenets/alerts)
+
+asa=='sasa' wrong
+asa == 'sasa' correct space
+-->
+
+
+{% if messages %}
+	{% for message in messages %}
+	<!-- for error bootstrap doesnt have it rather it has DANGER tag so lets add a if conditional-->
+	<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}" role="alert">{{message}}</div>
+		
+ 	{% endfor %}
+{% endif %}

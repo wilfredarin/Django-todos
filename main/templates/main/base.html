@@ -1,0 +1,58 @@
+{% load static %}
+<!--it has common markup of all the pages-->
+
+<!DOCTYPE html>
+<head>
+	
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+	<meta http-eqiv='X-UA-Compatible' content="ie=edge">
+	<title>
+	{% block title %}
+	 | The Super Todos
+	{% endblock title %}</title>
+	<link rel="stylesheet" href="{% static 'main/bootstrap.min.css' %}">
+
+	<!-- adding a link of gijgo -->
+	<link rel="stylesheet"  href="{% static 'main/gijgo.min.css' %}">
+
+</head>
+
+<body>
+<div class="container">
+
+<nav class="nav my-5">
+<!-- adding links add django url tags to : <a class="nav-link" href="#">Active</a> -->
+  
+  <a class="nav-link" href="{% url 'index' %}">Home</a>
+  <a class="nav-link" href="{% url 'todo_create' %}">Create todos</a>
+  
+</nav>
+
+<!-- include messages from the partial file     -->
+{% include "main/partials/messages.html" %}
+{% block main_content %}
+
+{% endblock main_content %}
+
+</div>
+<!--add jqery load jqery first as gijgo depends on it -->
+<script src="{% static 'main/jquery.min.js' %}" charset="utf-8"></script>
+<script src="{% static 'main/gijgo.min.js' %}" charset="utf-8"></script>
+
+
+<!-- uilibrary if=n gikgo to get bootstrap version4 datepicker configuration  
+
+https://gijgo.com/datepicker/example/bootstrap-4
+
+if u go to inspect element
+in todo page u'll se every
+element has a id name in the format div_id_element name this it the naming condition of Django
+
+-->
+<script type="text/javascript">
+        $('#id_due_date').datepicker({
+            uiLibrary: 'bootstrap4', iconsLibrary :'materialicons'});
+    </script>
+</body>
+</html>

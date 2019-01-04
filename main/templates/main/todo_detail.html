@@ -1,0 +1,32 @@
+<!-- this template display tod
+fetched from database  it should be first thing-->
+
+<!--block.super gets the thinside the block-->
+{% extends "main/base.html" %}
+{% load static %}
+	{% block title %}
+		{{todo.title}}
+		{{block.super}}
+
+	{% endblock title%}
+
+{% block main_content %}
+	<div class="card text-center">
+  <div class="card-header">
+    Wilfredarin | Due {{todo.due_date}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{todo.title}}</h5>
+    <p class="card-text">{{todo.description}}</p>
+    <a href="{% url 'index' %}" class="btn btn-primary">Get Me Back</a>
+  </div>
+  <div class="card-footer text-muted">
+
+    {{todo.done|yesno:"Done,Not Done"}}
+  </div>
+</div>	
+
+
+
+
+{% endblock main_content %}

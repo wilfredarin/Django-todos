@@ -1,0 +1,67 @@
+<!--my  BtUrC@e2a$RFln$cbe58 -->
+{% extends "main/base.html" %}
+
+<!--use base template by adding this code-->
+
+
+{% block title %}
+		Home
+		{{block.super}}
+
+{% endblock title%}
+
+{% block main_content %}
+
+	<!-- lets put every thong specific to this file here-->
+	<p>Wilfredarin | 
+	today is {{today}} | 
+	App Name {{app_name}} </p>
+
+	
+
+	<h3>Our todos</h3>
+	<table class="table table-dark">
+	  <thead>
+	    <tr>
+	      <th scope="col">Sr.</th>
+	      <th scope="col">Title</th>
+	      <th scope="col">Discription</th>
+	      <th scope="col">Done</th>
+	      <th scope="col">Due date</th>
+	      <th scope="col">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for todo in todos %}
+		<!--added class btnbtn-info of bootstrap class and django url tag
+		truncatewords shortens it
+		-->	
+		<tr>
+	      <td>{{forloop.counter }}</td>
+	      <td><a href="{% url 'todo_update' todo_id=todo.pk %}"> {{todo.title}}</a></td>
+	      <td>{{todo.description|truncatewords:5}}</td>
+	      <td>{{todo.done|yesno:"Yes,No"}}</td>
+	      <td>{{todo.due_date}}</td>
+	      <td><a  class="btn btn-info"href="{% url 'todo_detail' todo_id=todo.pk %}">Show</a></td>
+	    </tr>
+		
+			
+
+		{% endfor %}
+	    
+	  </tbody>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main_content %}
+
